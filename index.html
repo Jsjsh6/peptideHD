@@ -11,7 +11,7 @@
         /* 平滑滚动 */
         html { 
             scroll-behavior: smooth; 
-            scroll-padding-top: 80px; /* Prevents fixed header from blocking section titles */
+            scroll-padding-top: 100px; /* 针对带有 Logo 的导航栏高度稍微增加了间距 */
         }
 
         :root {
@@ -46,7 +46,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 15px 5%; /* 稍微优化了间距，让 Logo 排版更好看 */
             border-bottom: 1px solid #eee;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             background: #fff;
@@ -54,13 +54,19 @@
             top: 0;
             z-index: 100;
         }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-            letter-spacing: 1px;
+        
+        /* Logo 图片容器和样式控制 */
+        .logo-container {
+            display: flex;
+            align-items: center;
             text-decoration: none;
         }
+        .logo-img {
+            height: 45px; /* 你可以通过修改这个高度值，来完美匹配你 Logo 的长宽比例 */
+            width: auto;
+            object-fit: contain;
+        }
+
         nav a {
             margin: 0 15px;
             text-decoration: none;
@@ -128,7 +134,7 @@
         .feature-box { background: white; padding: 35px; border-radius: 10px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .feature-box h3 { color: var(--primary-color); margin-bottom: 15px; font-size: 22px; }
 
-        /* 6. Footer Contact Icons */
+        /* 6. Footer Contact Icons (已经更新为彩色模式) */
         .contact-icons-only {
             display: flex;
             justify-content: center;
@@ -136,15 +142,16 @@
             margin-top: 20px;
         }
         .contact-icons-only a {
-            font-size: 30px;
-            color: #9ca3af;
+            font-size: 32px;
             transition: 0.3s;
             text-decoration: none;
         }
         .contact-icons-only a:hover { transform: scale(1.2); }
-        .contact-icons-only .fa-envelope:hover { color: var(--accent-color); }
-        .contact-icons-only .fa-discord:hover { color: #5865F2; }
-        .contact-icons-only .fa-whatsapp:hover { color: #25D366; }
+        
+        /* 针对不同图标应用对应的标志性专属色彩 */
+        .contact-icons-only .fa-envelope { color: #00d4b2; } /* 网站的青蓝色调 */
+        .contact-icons-only .fa-discord { color: #5865F2; }  /* Discord 官方蓝 */
+        .contact-icons-only .fa-whatsapp { color: #25D366; } /* WhatsApp 官方绿 */
 
         footer { background-color: #0d1117; color: #9ca3af; padding: 60px 5% 30px; font-size: 14px; }
         .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 40px; }
@@ -172,7 +179,9 @@
     </div>
 
     <header>
-        <a href="#home" class="logo">PEPTIDES FACTORY</a>
+        <a href="#home" class="logo-container">
+            <img src="logo.png" alt="Peptides Factory Logo" class="logo-img">
+        </a>
         <nav>
             <a href="#home">Home</a>
             <a href="#shop">Shop</a>
