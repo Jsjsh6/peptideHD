@@ -163,6 +163,7 @@
             text-align: justify;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -277,12 +278,28 @@
                 <a href="#">Contact Us</a>
             </div>
             <div class="footer-column">
-                <h4>Contact Us</h4>
-                <p>Email: <a href="mailto:iajsh3657@gmail.com" style="color:#9ca3af;">iajsh3657@gmail.com</a></p>
-                <p>Discord: <a href="https://discord.gg/aBwykq6pZ" style="color:#9ca3af;text-decoration:none;">Join Our Server</a></p>
-                <p>WhatsApp: <a href="https://wa.me/85252638529" style="color:#9ca3af;text-decoration:none;">+852 52638529</a></p>
-            </div>
-        </div>
+    <h4>Contact Us</h4>
+    <!-- 点击邮箱直接唤起邮件客户端 -->
+    <p>
+        <a href="mailto:iajsh3657@gmail.com" style="color:#9ca3af;text-decoration:none;">
+            <i class="fas fa-envelope" style="color:var(--accent-color); margin-right:10px;"></i> iajsh3657@gmail.com
+        </a>
+    </p>
+    
+    <!-- 点击 Discord 直接跳转 -->
+    <p>
+        <a href="https://discord.gg/aBwykq6pZ" target="_blank" style="color:#9ca3af;text-decoration:none;">
+            <i class="fab fa-discord" style="color:#5865F2; margin-right:10px;"></i> Join Our Discord
+        </a>
+    </p>
+    
+    <!-- 点击 WhatsApp 直接跳转私聊 -->
+    <p>
+        <a href="https://wa.me/85252638529" target="_blank" style="color:#9ca3af;text-decoration:none;">
+            <i class="fab fa-whatsapp" style="color:#25D366; margin-right:10px;"></i> +852 52638529
+        </a>
+    </p>
+</div>
         
         <div class="disclaimer">
             <strong>IMPORTANT DISCLAIMER:</strong> <br>
@@ -291,6 +308,11 @@
             Copyright © 2026 Peptides Factory. All Rights Reserved.
         </div>
     </footer>
+<!-- 右下角悬浮 Discord 按钮 -->
+<a href="https://discord.gg/aBwykq6pZ" target="_blank" style="position:fixed; bottom:30px; right:30px; background:#5865F2; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:30px; box-shadow:0 5px 15px rgba(0,0,0,0.3); z-index:9999; text-decoration:none;">
+    <i class="fab fa-discord"></i>
+</a>
 
+<!-- 如果你想换成 WhatsApp，只需把颜色 #5865F2 改成 #25D366，图标改为 fab fa-whatsapp -->
 </body>
 </html>
