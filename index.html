@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peptides Factory</title>
+    <title>Peptides Factory | High Purity Research Peptides Manufacturer</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* 【关键】这行 CSS 决定了点击时是平滑滚动，而不是猛烈地直接切过去 */
+        /* 平滑滚动 */
         html { 
             scroll-behavior: smooth; 
-            scroll-padding-top: 90px; /* 防止导航栏挡住标题，根据你导航栏的高度调整 */
+            scroll-padding-top: 80px; /* Prevents fixed header from blocking section titles */
         }
 
         :root {
@@ -19,56 +20,155 @@
             --text-dark: #333;
             --bg-light: #f8f9fa;
         }
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; color: var(--text-dark); }
-
-        /* 顶部通告栏 */
-        .announcement-bar { background-color: var(--primary-color); color: #fff; text-align: center; padding: 10px 0; font-size: 14px; font-weight: bold; }
-        .announcement-bar a { color: var(--accent-color); text-decoration: none; }
-
-        /* 导航栏样式（吸顶固定） */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            background: #fff; 
-            position: sticky; top: 0; z-index: 100; /* 固定在顶部，方便随时点击跳转 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
         }
-        .logo { font-size: 24px; font-weight: bold; color: var(--primary-color); letter-spacing: 1px; text-decoration: none; }
-        nav a { margin: 0 15px; text-decoration: none; color: var(--text-dark); font-weight: 600; transition: 0.3s; }
+
+        /* 1. Announcement Bar */
+        .announcement-bar {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .announcement-bar a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* 2. Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
         nav a:hover { color: var(--accent-color); }
 
-        /* 各板块通用样式 */
-        .hero-section { background: linear-gradient(rgba(10,37,64,0.85), rgba(10,37,64,0.85)), url('https://images.unsplash.com/photo-1532187875605-1ef6ca237b63?auto=format&fit=crop&q=80&w=1920') center/cover; color: white; text-align: center; padding: 120px 20px; }
+        /* 3. Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(10,37,64,0.85), rgba(10,37,64,0.85)), url('https://images.unsplash.com/photo-1532187875605-1ef6ca237b63?auto=format&fit=crop&q=80&w=1920') no-repeat center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+        .hero-section h1 { font-size: 42px; margin-bottom: 10px; }
+        .hero-section p { font-size: 18px; opacity: 0.9; }
+
+        /* 4. Product Grid */
         .container { width: 90%; margin: 60px auto; }
         .section-title { text-align: center; margin-bottom: 50px; font-size: 32px; color: var(--primary-color); }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { border: 1px solid #e1e1e1; border-radius: 12px; padding: 25px; text-align: center; background: #fff; }
-        .product-img { width: 100%; height: 220px; background-color: #f0f0f0; margin-bottom: 20px; border-radius: 8px; }
-        .product-title { font-size: 20px; margin: 15px 0 10px; font-weight: bold; }
-        .product-price { color: #555; margin-bottom: 20px; }
-        .inquiry-btn { background-color: var(--primary-color); color: white; padding: 12px 25px; text-decoration: none; display: block; font-weight: bold; border-radius: 5px; }
-        .features-section { background-color: var(--bg-light); padding: 80px 5%; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .feature-box { background: white; padding: 35px; border-radius: 10px; text-align: center; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            border: 1px solid #e1e1e1;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: 0.4s;
+            background: #fff;
+        }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .product-img { 
+            width: 100%; height: 220px; background-color: #f0f0f0; margin-bottom: 20px; 
+            border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow: hidden;
+        }
+        .product-img img { width: 100%; height: 100%; object-fit: contain; }
+        .product-title { font-size: 20px; margin: 15px 0 10px; font-weight: bold; color: var(--primary-color); }
+        .product-price { color: #555; font-weight: 600; margin-bottom: 20px; font-size: 18px; }
+        .inquiry-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .inquiry-btn:hover { background-color: var(--accent-color); color: var(--primary-color); }
 
-        /* 页脚图标跳转样式 */
-        .contact-icons-only { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
-        .contact-icons-only a { font-size: 32px; color: #9ca3af; transition: 0.3s; text-decoration: none; }
+        /* 5. Features Section */
+        .features-section { background-color: var(--bg-light); padding: 80px 5%; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .feature-box { background: white; padding: 35px; border-radius: 10px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .feature-box h3 { color: var(--primary-color); margin-bottom: 15px; font-size: 22px; }
+
+        /* 6. Footer Contact Icons */
+        .contact-icons-only {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .contact-icons-only a {
+            font-size: 30px;
+            color: #9ca3af;
+            transition: 0.3s;
+            text-decoration: none;
+        }
         .contact-icons-only a:hover { transform: scale(1.2); }
         .contact-icons-only .fa-envelope:hover { color: var(--accent-color); }
         .contact-icons-only .fa-discord:hover { color: #5865F2; }
         .contact-icons-only .fa-whatsapp:hover { color: #25D366; }
-        footer { background-color: #0d1117; color: #9ca3af; padding: 60px 5% 30px; }
+
+        footer { background-color: #0d1117; color: #9ca3af; padding: 60px 5% 30px; font-size: 14px; }
         .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 40px; }
-        .footer-column { flex: 1; min-width: 250px; }
-        .footer-column h4 { color: white; margin-bottom: 20px; }
+        .footer-column { flex: 1; min-width: 250px; margin-bottom: 30px; padding-right: 20px; }
+        .footer-column h4 { color: white; margin-bottom: 20px; font-size: 18px; }
+        .footer-column a { color: #9ca3af; text-decoration: none; display: block; margin-bottom: 10px; }
         .disclaimer { border-top: 1px solid #30363d; padding-top: 30px; font-size: 12px; color: #6b7280; text-align: justify; }
+
+        /* 悬浮按钮 */
+        .float-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: #25D366; color: white; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 9999; text-decoration: none;
+        }
     </style>
 </head>
 <body>
 
     <div class="announcement-bar">
-        Join our Discord community for exclusive HPLC reports! <a href="https://discord.gg/aBwykq6pZ" target="_blank">JOIN NOW</a>
+        Join our Discord community for exclusive HPLC reports & bulk discounts! 
+        <a href="https://discord.gg/aBwykq6pZ" target="_blank">JOIN NOW ✈️</a>
     </div>
 
     <header>
@@ -84,32 +184,32 @@
 
     <section class="hero-section" id="home">
         <h1>Professional Peptide Manufacturer</h1>
-        <p>Laboratory-Grade Purity | Factory Direct Prices | Stealth Global Shipping</p>
+        <p>Laboratory-Grade Purity | Factory Direct Prices | Stealth Worldwide Shipping</p>
     </section>
 
     <div class="container" id="shop">
         <h2 class="section-title">Featured Research Peptides</h2>
         <div class="product-grid">
             <div class="product-card">
-                <div class="product-img"></div>
+                <div class="product-img"><img src="Tirzepatide.png" alt="Tirzepatide"></div>
                 <div class="product-title">Tirzepatide</div>
                 <div class="product-price">$43.00 – $329.00</div>
                 <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
             </div>
             <div class="product-card">
-                <div class="product-img"></div>
+                <div class="product-img"><img src="Semaglutide.png" alt="Semaglutide" ></div>
                 <div class="product-title">Semaglutide</div>
                 <div class="product-price">$40.00 – $109.00</div>
                 <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
             </div>
             <div class="product-card">
-                <div class="product-img"></div>
+                <div class="product-img"><img src="Retatrutide.png" alt="Retatrutide"></div>
                 <div class="product-title">Retatrutide</div>
                 <div class="product-price">$77.00 – $371.00</div>
                 <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
             </div>
             <div class="product-card">
-                <div class="product-img"></div>
+                <div class="product-img"><img src="Oxytocin Acetate.png" alt="Oxytocin Acetate" ></div>
                 <div class="product-title">Oxytocin Acetate</div>
                 <div class="product-price">$29.00 – $51.00</div>
                 <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
@@ -122,15 +222,15 @@
         <div class="features-grid">
             <div class="feature-box">
                 <h3>99%+ Purity</h3>
-                <p>Every batch is verified by HPLC & MS analysis to ensure research standards.</p>
+                <p>Every batch is verified by HPLC & MS analysis to ensure the highest research standards for your laboratory.</p>
             </div>
             <div class="feature-box">
                 <h3>Secure Payments</h3>
-                <p>Accepting BTC, USDT, Wise, and Bank Wire. Safe and discreet.</p>
+                <p>We accept Bitcoin (BTC), USDT, Wise, and Bank Wire (T/T). Safe and discreet transactions guaranteed.</p>
             </div>
             <div class="feature-box">
                 <h3>Discreet Delivery</h3>
-                <p>Advanced stealth packaging for high success rate customs clearance.</p>
+                <p>Advanced stealth packaging with 100% success rate in customs clearance across USA, EU, and UK.</p>
             </div>
         </div>
     </section>
@@ -139,10 +239,17 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h4>About Peptides Factory</h4>
-                <p>Leading supplier of high-quality research peptides and API intermediates since 2018.</p>
+                <p>Leading supplier of high-quality research peptides and API intermediates since 2018. We focus on providing high-purity products for the global scientific community.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <a href="#shop">Shop Products</a>
+                <a href="#lab">Lab Reports</a>
+                <a href="#">Shipping Policy</a>
+                <a href="#">Privacy Policy</a>
             </div>
             <div class="footer-column" style="text-align: center;">
-                <h4>Connect With Us</h4>
+                <h4>Contact Us</h4>
                 <div class="contact-icons-only">
                     <a href="mailto:iajsh3657@gmail.com" title="Email Us"><i class="fas fa-envelope"></i></a>
                     <a href="https://discord.gg/aBwykq6pZ" target="_blank" title="Join Discord"><i class="fab fa-discord"></i></a>
@@ -150,11 +257,18 @@
                 </div>
             </div>
         </div>
+        
         <div class="disclaimer">
-            <strong>RESEARCH USE ONLY:</strong> Products are strictly not for human consumption. <br><br>
+            <strong>IMPORTANT DISCLAIMER:</strong> <br>
+            All products listed on this website are strictly for <strong>RESEARCH AND DEVELOPMENT PURPOSES ONLY</strong>. They are NOT intended for human consumption, clinical trials, veterinary use, or use in food, drugs, or cosmetics.
+            <br><br>
             Copyright © 2026 Peptides Factory. All Rights Reserved.
         </div>
     </footer>
+
+    <a href="https://wa.me/85252638529" class="float-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
 </body>
 </html>
