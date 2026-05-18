@@ -5,26 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peptides Factory | High Purity Research Peptides Manufacturer</title>
     
-    <!-- 引入图标库 (Font Awesome) -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* 全局平滑滚动效果 */
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
 
         :root {
             --primary-color: #0a2540;
             --accent-color: #00d4b2;
             --text-dark: #333;
             --bg-light: #f8f9fa;
+            --discord-blue: #5865F2;
+            --whatsapp-green: #25D366;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0; padding: 0;
             color: var(--text-dark);
             background-color: #fff;
             line-height: 1.6;
@@ -39,8 +38,7 @@
             font-size: 14px;
             font-weight: bold;
             position: sticky;
-            top: 0;
-            z-index: 1000;
+            top: 0; z-index: 1000;
         }
         .announcement-bar a {
             color: var(--accent-color);
@@ -75,8 +73,6 @@
         }
         nav a:hover { color: var(--accent-color); }
 
-        .header-icons { font-size: 16px; color: var(--text-dark); }
-
         /* 3. Hero Section */
         .hero-section {
             background: linear-gradient(rgba(10,37,64,0.8), rgba(10,37,64,0.8)), url('https://images.unsplash.com/photo-1532187875605-1ef6ca237b63?auto=format&fit=crop&q=80&w=1920') no-repeat center/cover;
@@ -86,25 +82,6 @@
         }
         .hero-section h1 { font-size: 48px; margin-bottom: 20px; }
         .hero-section p { font-size: 20px; opacity: 0.9; margin-bottom: 40px; }
-        
-        .search-box input {
-            padding: 15px 20px;
-            width: 300px;
-            border: none;
-            border-radius: 4px 0 0 4px;
-            font-size: 16px;
-            outline: none;
-        }
-        .search-box button {
-            padding: 15px 30px;
-            background-color: var(--accent-color);
-            border: none;
-            color: var(--primary-color);
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 0 4px 4px 0;
-            transition: 0.3s;
-        }
 
         /* 4. Product Grid */
         .container { width: 90%; max-width: 1200px; margin: 80px auto; }
@@ -119,7 +96,7 @@
         .product-card {
             border: 1px solid #eee;
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             transition: 0.4s;
             background: #fff;
@@ -127,21 +104,11 @@
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         
         .product-img { 
-            width: 100%; 
-            height: 200px; 
-            background-color: #f9f9f9; 
-            margin-bottom: 15px; 
-            border-radius: 8px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            overflow: hidden;
+            width: 100%; height: 200px; background-color: #f9f9f9; margin-bottom: 20px; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
         .product-img img { width: 100%; height: 100%; object-fit: contain; }
 
-        .product-title { font-size: 18px; margin: 10px 0; font-weight: bold; color: var(--primary-color); }
-        .product-price { color: #666; font-weight: 600; margin-bottom: 20px; font-size: 16px; }
-        
         .inquiry-btn {
             background-color: var(--primary-color);
             color: white;
@@ -154,181 +121,135 @@
         }
         .inquiry-btn:hover { background-color: var(--accent-color); color: var(--primary-color); }
 
-        /* 5. Features & About */
-        .features-section { background-color: var(--bg-light); padding: 80px 5%; }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+        /* 5. Footer Contact Icons (Clean Version) */
+        .contact-icon-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
         }
-        .feature-box { background: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .feature-box i { font-size: 40px; color: var(--accent-color); margin-bottom: 20px; }
+        .contact-icon-row a {
+            font-size: 32px;
+            color: #9ca3af;
+            transition: 0.4s;
+            text-decoration: none;
+        }
+        .contact-icon-row a:hover { transform: scale(1.3); }
+        .contact-icon-row .fa-envelope:hover { color: var(--accent-color); }
+        .contact-icon-row .fa-discord:hover { color: var(--discord-blue); }
+        .contact-icon-row .fa-whatsapp:hover { color: var(--whatsapp-green); }
 
-        /* 6. Footer */
-        footer { background-color: #0d1117; color: #9ca3af; padding: 80px 5% 40px; }
-        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 40px; }
-        .footer-column { flex: 1; min-width: 200px; margin-bottom: 30px; }
-        .footer-column h4 { color: white; margin-bottom: 25px; font-size: 18px; }
-        .footer-column a { color: #9ca3af; text-decoration: none; display: block; margin-bottom: 12px; }
-        .footer-column a:hover { color: var(--accent-color); }
-        
-        .disclaimer { border-top: 1px solid #30363d; padding-top: 30px; font-size: 12px; color: #6b7280; text-align: justify; }
+        /* 6. Footer Layout */
+        footer { background-color: #0d1117; color: #9ca3af; padding: 80px 5% 40px; text-align: center; }
+        .footer-cols { display: flex; justify-content: space-between; flex-wrap: wrap; text-align: left; margin-bottom: 40px; }
+        .footer-col { flex: 1; min-width: 250px; margin-bottom: 20px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; }
+        .disclaimer { border-top: 1px solid #30363d; padding-top: 30px; font-size: 12px; color: #6b7280; text-align: justify; line-height: 1.8; }
 
-        /* Floating Button */
+        /* Floating WhatsApp Button */
         .float-btn {
             position: fixed; bottom: 30px; right: 30px;
-            width: 60px; height: 60px; border-radius: 50%;
+            width: 65px; height: 65px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 28px; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 32px; color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             z-index: 9999; text-decoration: none; transition: 0.3s;
+            background: var(--whatsapp-green);
         }
-        .float-btn:hover { transform: scale(1.1); }
-        .discord-color { background: #5865F2; }
+        .float-btn:hover { transform: scale(1.1) rotate(10deg); }
     </style>
 </head>
 <body>
 
-    <!-- 1. Top Announcement Bar -->
+    <!-- Top Bar -->
     <div class="announcement-bar">
-        <i class="fab fa-discord"></i> Join our Discord for HPLC Reports & Wholesale Pricing 
-        <a href="https://discord.gg/aBwykq6pZ" target="_blank">JOIN NOW</a>
+        <i class="fab fa-discord"></i> HPLC Reports & Bulk Discounts Available 
+        <a href="https://discord.gg/aBwykq6pZ" target="_blank">JOIN DISCORD</a>
     </div>
 
-    <!-- 2. Header -->
+    <!-- Header -->
     <header>
         <a href="#home" class="logo">PEPTIDES FACTORY</a>
         <nav>
             <a href="#home">Home</a>
             <a href="#shop">Shop</a>
-            <a href="#lab-reports">Lab Reports</a>
-            <a href="#about">About Us</a>
+            <a href="#lab">Lab Reports</a>
             <a href="#contact">Contact</a>
         </nav>
-        <div class="header-icons">
-            <i class="fas fa-search"></i> &nbsp;&nbsp; 
-            <i class="fas fa-user"></i> &nbsp;&nbsp; 
-            <i class="fas fa-shopping-cart"></i> ($0.00)
-        </div>
     </header>
 
-    <!-- 3. Hero Section (Home) -->
+    <!-- Hero -->
     <section class="hero-section" id="home">
         <h1>High Purity Research Peptides</h1>
-        <p>Direct Manufacturer | >99% Purity Guaranteed | Secure Worldwide Stealth Shipping</p>
-        <div class="search-box">
-            <input type="text" placeholder="Search (e.g. Tirzepatide)...">
-            <button>Search</button>
-        </div>
+        <p>Manufacturer Direct | 99%+ Purity | Guaranteed Stealth Global Shipping</p>
     </section>
 
-    <!-- 4. Featured Products (Shop) -->
+    <!-- Shop Section -->
     <div class="container" id="shop">
-        <h2 class="section-title">Featured Research Products</h2>
+        <h2 class="section-title">Product Catalog</h2>
         <div class="product-grid">
-            <!-- Product 1 -->
+            <!-- Tirz -->
             <div class="product-card">
-                <div class="product-img">
-                    <img src="Tirzepatide.png" alt="Tirzepatide" onerror="this.parentElement.innerHTML='Tirzepatide Image'">
-                </div>
-                <div class="product-title">Tirzepatide</div>
-                <div class="product-price">$43.00 – $329.00</div>
-                <a href="https://wa.me/85252638529?text=Inquiry: Tirzepatide" class="inquiry-btn">Inquiry Now</a>
+                <div class="product-img"><img src="Tirzepatide.png" alt="Tirzepatide" onerror="this.parentElement.innerHTML='Product Image'"></div>
+                <div style="font-weight:bold; font-size:18px; margin-bottom:10px;">Tirzepatide</div>
+                <div style="color:#666; margin-bottom:20px;">$43.00 – $329.00</div>
+                <a href="https://wa.me/85252638529?text=Hi, I want to inquire about Tirzepatide." class="inquiry-btn">Inquiry Now</a>
             </div>
-            <!-- Product 2 -->
+            <!-- Sema -->
             <div class="product-card">
-                <div class="product-img">
-                    <img src="Semaglutide.png" alt="Semaglutide" onerror="this.parentElement.innerHTML='Semaglutide Image'">
-                </div>
-                <div class="product-title">Semaglutide</div>
-                <div class="product-price">$40.00 – $109.00</div>
-                <a href="https://wa.me/85252638529?text=Inquiry: Semaglutide" class="inquiry-btn">Inquiry Now</a>
+                <div class="product-img"><img src="Semaglutide.png" alt="Semaglutide" onerror="this.parentElement.innerHTML='Product Image'"></div>
+                <div style="font-weight:bold; font-size:18px; margin-bottom:10px;">Semaglutide</div>
+                <div style="color:#666; margin-bottom:20px;">$40.00 – $109.00</div>
+                <a href="https://wa.me/85252638529?text=Hi, I want to inquire about Semaglutide." class="inquiry-btn">Inquiry Now</a>
             </div>
-            <!-- Product 3 -->
+            <!-- Reta -->
             <div class="product-card">
-                <div class="product-img">
-                    <img src="Retatrutide.png" alt="Retatrutide" onerror="this.parentElement.innerHTML='Retatrutide Image'">
-                </div>
-                <div class="product-title">Retatrutide</div>
-                <div class="product-price">$77.00 – $371.00</div>
-                <a href="https://wa.me/85252638529?text=Inquiry: Retatrutide" class="inquiry-btn">Inquiry Now</a>
-            </div>
-            <!-- Product 4 -->
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="Oxytocin.png" alt="Oxytocin" onerror="this.parentElement.innerHTML='Oxytocin Image'">
-                </div>
-                <div class="product-title">Oxytocin Acetate</div>
-                <div class="product-price">$29.00 – $51.00</div>
-                <a href="https://wa.me/85252638529?text=Inquiry: Oxytocin" class="inquiry-btn">Inquiry Now</a>
+                <div class="product-img"><img src="Retatrutide.png" alt="Retatrutide" onerror="this.parentElement.innerHTML='Product Image'"></div>
+                <div style="font-weight:bold; font-size:18px; margin-bottom:10px;">Retatrutide</div>
+                <div style="color:#666; margin-bottom:20px;">$77.00 – $371.00</div>
+                <a href="https://wa.me/85252638529?text=Hi, I want to inquire about Retatrutide." class="inquiry-btn">Inquiry Now</a>
             </div>
         </div>
     </div>
 
-    <!-- 5. Lab Reports Section -->
-    <section class="container" id="lab-reports" style="text-align: center; border-top: 1px solid #eee; padding-top: 60px;">
-        <h2 class="section-title">Lab Verification</h2>
-        <div class="feature-box" style="max-width: 800px; margin: 0 auto;">
-            <i class="fas fa-file-medical-alt"></i>
-            <h3>HPLC & MS Certified</h3>
-            <p>Every batch is strictly tested for purity and sequence. We provide full transparency to our research partners. Full HPLC reports for current batches are updated weekly in our Discord community.</p>
-            <a href="https://discord.gg/aBwykq6pZ" target="_blank" style="color: var(--accent-color); font-weight: bold; text-decoration: none;">View Reports on Discord →</a>
+    <!-- Lab Section -->
+    <section class="container" id="lab" style="text-align: center; border-top: 1px solid #eee; padding-top: 80px;">
+        <h2 class="section-title">Quality Control</h2>
+        <div style="background: var(--bg-light); padding: 50px; border-radius: 15px; max-width: 800px; margin: 0 auto;">
+            <i class="fas fa-check-circle" style="font-size: 50px; color: var(--accent-color); margin-bottom: 20px;"></i>
+            <h3>Verified HPLC & MS Reports</h3>
+            <p>We ensure that every vial meets the highest scientific standards. Our third-party testing reports are updated regularly within our community.</p>
+            <a href="https://discord.gg/aBwykq6pZ" target="_blank" style="color:var(--primary-color); font-weight:bold; text-decoration:none;">View All Reports on Discord →</a>
         </div>
     </section>
 
-    <!-- 6. About Section -->
-    <section class="features-section" id="about">
-        <h2 class="section-title">Why Choose Us?</h2>
-        <div class="features-grid">
-            <div class="feature-box">
-                <i class="fas fa-microscope"></i>
-                <h3>Unrivaled Purity</h3>
-                <p>99%+ purity levels verified by third-party testing for consistent research results.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-truck-loading"></i>
-                <h3>Stealth Shipping</h3>
-                <p>Advanced discrete packaging ensuring a 100% customs clearance rate in USA, EU, and UK.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-handshake"></i>
-                <h3>Factory Direct</h3>
-                <p>By eliminating middleman, we offer wholesale factory pricing for bulk orders.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. Footer (Contact) -->
+    <!-- Footer / Contact -->
     <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-column">
+        <div class="footer-cols">
+            <div class="footer-col">
                 <h4>Peptides Factory</h4>
-                <p>Your trusted manufacturer of high-purity research chemicals and peptides. Committed to science and quality since 2018.</p>
+                <p>A leading manufacturer specialized in peptide synthesis and delivery for global research institutions.</p>
             </div>
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <a href="#home">Home</a>
-                <a href="#shop">Shop Products</a>
-                <a href="#lab-reports">Lab Reports</a>
-                <a href="https://discord.gg/aBwykq6pZ" target="_blank">Discord Community</a>
-            </div>
-            <div class="footer-column">
-                <h4>Contact Support</h4>
-                <a href="mailto:iajsh3657@gmail.com"><i class="fas fa-envelope"></i> iajsh3657@gmail.com</a>
-                <a href="https://wa.me/85252638529" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: +852 52638529</a>
-                <a href="https://discord.gg/aBwykq6pZ" target="_blank"><i class="fab fa-discord"></i> Join Discord Server</a>
+            <div class="footer-col" style="text-align: center;">
+                <h4>Direct Contact</h4>
+                <p style="font-size: 14px; margin-bottom: 20px;">Click icons to reach us instantly</p>
+                <div class="contact-icon-row">
+                    <a href="mailto:iajsh3657@gmail.com" title="Email Us"><i class="fas fa-envelope"></i></a>
+                    <a href="https://discord.gg/aBwykq6pZ" target="_blank" title="Join Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://wa.me/85252638529" target="_blank" title="WhatsApp Us"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
         </div>
         
         <div class="disclaimer">
-            <strong>RESEARCH USE ONLY:</strong> All products are intended strictly for laboratory research and development purposes. Not for human consumption, medical, or diagnostic use. By purchasing, you agree to comply with all local regulations and acknowledge these products are for scientific study only.
+            <strong>LABORATORY RESEARCH USE ONLY:</strong> Products are strictly not for human consumption, medical, or therapeutic use. Buyers must be qualified researchers. We do not ship to countries where these substances are prohibited.
             <br><br>
             © 2026 Peptides Factory. All Rights Reserved.
         </div>
     </footer>
 
-    <!-- Floating Discord Button -->
-    <a href="https://discord.gg/aBwykq6pZ" class="float-btn discord-color" target="_blank">
-        <i class="fab fa-discord"></i>
+    <!-- Floating One-Click Contact -->
+    <a href="https://wa.me/85252638529" class="float-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
 </body>
