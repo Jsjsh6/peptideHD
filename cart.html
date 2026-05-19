@@ -19,7 +19,6 @@
             background-color: #fff;
         }
 
-        /* Navigation Styles matching Main Page */
         header {
             display: flex;
             justify-content: space-between;
@@ -46,7 +45,6 @@
         }
         nav a:hover { color: var(--accent-color); }
 
-        /* Cart Container Layout */
         .cart-container { 
             max-width: 1100px; 
             margin: 50px auto; 
@@ -61,7 +59,6 @@
             padding-bottom: 10px; 
         }
 
-        /* Cart Table Styles */
         .cart-table { 
             width: 100%; 
             border-collapse: collapse; 
@@ -80,7 +77,6 @@
             vertical-align: middle; 
         }
         
-        /* Product Row Elements */
         .item-image { 
             width: 70px; 
             height: 70px; 
@@ -105,7 +101,6 @@
             margin-top: 4px; 
         }
 
-        /* Quantity Inputs */
         .qty-control {
             display: flex;
             align-items: center;
@@ -131,7 +126,6 @@
             font-size: 16px; 
         }
 
-        /* Action Buttons */
         .delete-btn { 
             background: none; 
             border: none; 
@@ -145,7 +139,6 @@
             transform: scale(1.1); 
         }
 
-        /* Summary Panel Layout */
         .cart-summary { 
             background: var(--bg-light); 
             padding: 30px; 
@@ -169,7 +162,6 @@
             margin-top: 15px; 
         }
 
-        /* Checkout Action Button */
         .checkout-btn { 
             background-color: #25D366; 
             color: white; 
@@ -195,7 +187,6 @@
             box-shadow: 0 5px 15px rgba(37,211,102,0.3);
         }
 
-        /* Empty State Layout */
         .empty-msg { 
             text-align: center; 
             padding: 60px 0; 
@@ -257,12 +248,11 @@
     </footer>
 
     <script>
-        // Function to load and render the cart items from localStorage
+        // Load data and dynamically build the interface
         function loadCart() {
             let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
             const container = document.getElementById('cart-content');
             
-            // Render empty message if cart contains no items
             if (cart.length === 0) {
                 container.innerHTML = `
                     <div class="empty-msg">
@@ -274,7 +264,6 @@
                 return;
             }
             
-            // Build the table structure
             let tableHTML = `
                 <table class="cart-table">
                     <thead>
@@ -292,7 +281,6 @@
             let subtotal = 0;
             let orderText = "Hi Peptides Factory, I would like to purchase the following items:\n\n";
             
-            // Iterate over items to build rows and checkout string data
             cart.forEach((item, index) => {
                 let itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
@@ -330,11 +318,9 @@
             
             tableHTML += `</tbody></table>`;
             
-            // Complete the order text for WhatsApp submission
             orderText += `\nTotal Subtotal: $${subtotal.toFixed(2)}\n\nPlease process my order layout.`;
             let whatsappUrl = `https://wa.me/85252638529?text=${encodeURIComponent(orderText)}`;
             
-            // Render summary section with data link integrated
             let summaryHTML = `
                 <div class="cart-summary">
                     <div class="summary-row"><span>Subtotal:</span><span>$${subtotal.toFixed(2)}</span></div>
@@ -349,21 +335,20 @@
             container.innerHTML = tableHTML + summaryHTML;
         }
         
-        // Function to update item quantities (+1 or -1)
+        // This function explicitly handles changing quantities (+1 or -1)
         function updateQty(index, change) {
             let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
             cart[index].quantity += change;
             
-            // Remove item from list if quantity drops to 0 or below
             if (cart[index].quantity <= 0) {
                 cart.splice(index, 1);
             }
             
             localStorage.setItem('peptides_cart', JSON.stringify(cart));
-            loadCart();
+            loadCart(); // re-render layout seamlessly
         }
         
-        // Function to remove item completely from localStorage
+        // This function handles deleting an item entirely
         function deleteItem(index) {
             let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
             cart.splice(index, 1);
@@ -371,7 +356,6 @@
             loadCart();
         }
         
-        // Run function automatically on load
         loadCart();
     </script>
 </body>
