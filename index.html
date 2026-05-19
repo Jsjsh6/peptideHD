@@ -10,14 +10,14 @@
     
     <meta property="og:title" content="peptides-factory">
     <meta property="og:description" content="Premium research peptides with factory-direct wholesale pricing and stealth shipping.">
-    <meta property="og:image" content="logo.png">
+    <meta property="og:image" content="https://jsjsh6.github.io/peptideHD/logo.png">
     <meta property="og:url" content="https://jsjsh6.github.io/peptideHD/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="peptides-factory">
     <meta name="twitter:description" content="Premium research peptides with factory-direct wholesale pricing and stealth shipping.">
-    <meta name="twitter:image" content="logo.png">
+    <meta name="twitter:image" content="https://jsjsh6.github.io/peptideHD/logo.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -113,15 +113,35 @@
             text-align: center;
             transition: 0.4s;
             background: #fff;
+            display: flex;
+            flex-direction: column; /* 确保内容和按钮排版整齐 */
         }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        
+        /* 新增：商品点击跳转区域样式 */
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+            margin-bottom: 20px; /* 给按钮留出空间 */
+        }
+        
         .product-img { 
             width: 100%; height: 220px; background-color: #f0f0f0; margin-bottom: 20px; 
             border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow: hidden;
         }
-        .product-img img { width: 100%; height: 100%; object-fit: contain; }
+        
+        /* 修改：增加图片悬浮微放大的动画效果 */
+        .product-img img { 
+            width: 100%; height: 100%; object-fit: contain; 
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-img img { transform: scale(1.08); }
+
         .product-title { font-size: 20px; margin: 15px 0 10px; font-weight: bold; color: var(--primary-color); }
-        .product-price { color: #555; font-weight: 600; margin-bottom: 20px; font-size: 18px; }
+        .product-price { color: #555; font-weight: 600; font-size: 18px; margin: 0; }
+        
         .inquiry-btn {
             background-color: var(--primary-color);
             color: white;
@@ -133,6 +153,7 @@
             display: block;
             font-weight: bold;
             transition: 0.3s;
+            margin-top: auto; /* 确保按钮永远在卡片最底部 */
         }
         .inquiry-btn:hover { background-color: var(--accent-color); color: var(--primary-color); }
 
@@ -202,41 +223,59 @@
             <a href="#contact">Contact</a>
         </nav>
     </header>
-
+    
     <section class="hero-section" id="home">
         <h1>Professional Peptide Manufacturer</h1>
         <p>Laboratory-Grade Purity | Factory Direct Prices | Stealth Worldwide Shipping</p>
     </section>
 
-    <div class="container" id="shop">
+    <!-- 修改：为了更好的语义化，将 div 改为了 section -->
+    <section class="container" id="shop">
         <h2 class="section-title">Featured Research Peptides</h2>
         <div class="product-grid">
+            
+            <!-- 商品 1 -->
             <div class="product-card">
-                <div class="product-img"><img src="Tirzepatide.png" alt="Tirzepatide"></div>
-                <div class="product-title">Tirzepatide</div>
-                <div class="product-price">$43.00 – $329.00</div>
+                <a href="tirzepatide-detail.html" class="product-link">
+                    <div class="product-img"><img src="Tirzepatide.png" alt="Tirzepatide"></div>
+                    <div class="product-title">Tirzepatide</div>
+                    <div class="product-price">$43.00 – $329.00</div>
+                </a>
                 <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
             </div>
+
+            <!-- 商品 2 -->
             <div class="product-card">
-                <div class="product-img"><img src="Semaglutide.png" alt="Semaglutide" ></div>
-                <div class="product-title">Semaglutide</div>
-                <div class="product-price">$40.00 – $109.00</div>
+                <a href="semaglutide-detail.html" class="product-link">
+                    <div class="product-img"><img src="Semaglutide.png" alt="Semaglutide" ></div>
+                    <div class="product-title">Semaglutide</div>
+                    <div class="product-price">$40.00 – $109.00</div>
+                </a>
                 <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
             </div>
+
+            <!-- 商品 3 -->
             <div class="product-card">
-                <div class="product-img"><img src="Retatrutide.png" alt="Retatrutide"></div>
-                <div class="product-title">Retatrutide</div>
-                <div class="product-price">$77.00 – $371.00</div>
+                <a href="retatrutide-detail.html" class="product-link">
+                    <div class="product-img"><img src="Retatrutide.png" alt="Retatrutide"></div>
+                    <div class="product-title">Retatrutide</div>
+                    <div class="product-price">$77.00 – $371.00</div>
+                </a>
                 <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
             </div>
+
+            <!-- 商品 4 -->
             <div class="product-card">
-                <div class="product-img"><img src="Oxytocin Acetate.png" alt="Oxytocin Acetate" ></div>
-                <div class="product-title">Oxytocin Acetate</div>
-                <div class="product-price">$29.00 – $51.00</div>
+                <a href="oxytocin-detail.html" class="product-link">
+                    <div class="product-img"><img src="Oxytocin Acetate.png" alt="Oxytocin Acetate" ></div>
+                    <div class="product-title">Oxytocin Acetate</div>
+                    <div class="product-price">$29.00 – $51.00</div>
+                </a>
                 <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
             </div>
+
         </div>
-    </div>
+    </section>
 
     <section class="features-section" id="lab">
         <h2 class="section-title" id="about">Why Partner With Us?</h2>
@@ -287,7 +326,8 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/85252638529" class="float-btn" target="_blank">
+    <!-- 增加了 aria-label 以提升无障碍访问标准 -->
+    <a href="https://wa.me/85252638529" class="float-btn" target="_blank" aria-label="Contact us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
