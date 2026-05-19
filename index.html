@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* 平滑滚动 */
         html { 
             scroll-behavior: smooth; 
-            scroll-padding-top: 100px; /* 针对带有 Logo 的导航栏高度稍微增加了间距 */
+            scroll-padding-top: 140px; 
         }
 
         :root {
@@ -46,7 +45,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%; /* 稍微优化了间距，让 Logo 排版更好看 */
+            padding: 15px 5%; 
             border-bottom: 1px solid #eee;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             background: #fff;
@@ -55,14 +54,13 @@
             z-index: 100;
         }
         
-        /* Logo 图片容器和样式控制 */
         .logo-container {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
         .logo-img {
-            height: 45px; /* 你可以通过修改这个高度值，来完美匹配你 Logo 的长宽比例 */
+            height: 90px; 
             width: auto;
             object-fit: contain;
         }
@@ -134,7 +132,7 @@
         .feature-box { background: white; padding: 35px; border-radius: 10px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .feature-box h3 { color: var(--primary-color); margin-bottom: 15px; font-size: 22px; }
 
-        /* 6. Footer Contact Icons (已经更新为彩色模式) */
+        /* 6. Footer Contact Icons */
         .contact-icons-only {
             display: flex;
             justify-content: center;
@@ -148,10 +146,9 @@
         }
         .contact-icons-only a:hover { transform: scale(1.2); }
         
-        /* 针对不同图标应用对应的标志性专属色彩 */
-        .contact-icons-only .fa-envelope { color: #00d4b2; } /* 网站的青蓝色调 */
-        .contact-icons-only .fa-discord { color: #5865F2; }  /* Discord 官方蓝 */
-        .contact-icons-only .fa-whatsapp { color: #25D366; } /* WhatsApp 官方绿 */
+        .contact-icons-only .fa-envelope { color: #00d4b2; } 
+        .contact-icons-only .fa-discord { color: #5865F2; }  
+        .contact-icons-only .fa-whatsapp { color: #25D366; } 
 
         footer { background-color: #0d1117; color: #9ca3af; padding: 60px 5% 30px; font-size: 14px; }
         .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 40px; }
@@ -160,7 +157,7 @@
         .footer-column a { color: #9ca3af; text-decoration: none; display: block; margin-bottom: 10px; }
         .disclaimer { border-top: 1px solid #30363d; padding-top: 30px; font-size: 12px; color: #6b7280; text-align: justify; }
 
-        /* 悬浮按钮 */
+        /* Floating Action Button */
         .float-btn {
             position: fixed; bottom: 30px; right: 30px;
             width: 60px; height: 60px; border-radius: 50%;
