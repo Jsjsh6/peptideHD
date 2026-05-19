@@ -6,33 +6,45 @@
     <title>Retatrutide Detail | Peptides Factory</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 请粘贴上述相同的 CSS 样式 */
         :root { --primary-color: #0a2540; --accent-color: #00d4b2; --text-dark: #333; --bg-light: #f8f9fa; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: var(--text-dark); }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; background: #fff;}
-        .logo-img { height: 90px; width: auto; object-fit: contain; } nav a { margin: 0 15px; text-decoration: none; color: var(--text-dark); font-weight: 500;}
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
+        .logo-img { height: 90px; width: auto; object-fit: contain; }
+        nav a { margin: 0 15px; text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--accent-color); }
+        footer { background-color: #0d1117; color: #9ca3af; padding: 60px 5% 30px; font-size: 14px; margin-top: 60px; }
+
         .detail-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; display: flex; gap: 50px; flex-wrap: wrap; }
         .product-image { flex: 1; min-width: 300px; background: #f0f0f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 40px; }
         .product-image img { width: 100%; max-width: 400px; object-fit: contain; }
         .product-info { flex: 1; min-width: 300px; display: flex; flex-direction: column; }
-        .breadcrumb { font-size: 14px; color: #666; margin-bottom: 15px; } .breadcrumb a { color: var(--primary-color); text-decoration: none; }
+        .breadcrumb { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .breadcrumb a { color: var(--primary-color); text-decoration: none; }
         .product-info h1 { font-size: 36px; color: var(--primary-color); margin: 0 0 15px; }
         .price-display { font-size: 32px; font-weight: bold; color: var(--accent-color); margin-bottom: 20px; }
         .stock-badge { display: inline-block; background: #e6f9f5; color: #00a88d; padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 20px; }
         .description { line-height: 1.6; color: #555; margin-bottom: 30px; font-size: 16px; }
+        
         .spec-section h3 { margin-bottom: 15px; font-size: 16px; color: var(--primary-color); }
         .spec-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
         .spec-btn { padding: 10px 15px; border: 2px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; transition: 0.3s; color: var(--text-dark); }
-        .spec-btn:hover, .spec-btn.active { border-color: var(--primary-color); background: var(--primary-color); color: white; }
+        .spec-btn:hover { border-color: var(--primary-color); }
+        .spec-btn.active { border-color: var(--primary-color); background: var(--primary-color); color: white; }
+
         .buy-btn { background-color: var(--accent-color); color: #fff; padding: 18px 30px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; transition: 0.3s; display: inline-flex; justify-content: center; align-items: center; gap: 10px; }
-        .buy-btn:hover { background-color: #00b598; transform: translateY(-2px); }
-        footer { background-color: #0d1117; color: #9ca3af; padding: 60px 5% 30px; font-size: 14px; margin-top: 60px; text-align: center;}
+        .buy-btn:hover { background-color: #00b598; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,212,178,0.2); }
+        .cart-count { background: var(--accent-color); color: white; padding: 2px 6px; border-radius: 10px; font-size: 12px; font-weight: bold; margin-left: 5px; }
     </style>
 </head>
 <body>
+
     <header>
         <a href="index.html" class="logo-container"><img src="logo.png" alt="Logo" class="logo-img"></a>
-        <nav><a href="index.html">Home</a><a href="index.html#shop">Shop</a></nav>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="cart.html" id="nav-cart"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count" id="cart-count">0</span></a>
+        </nav>
     </header>
 
     <div class="detail-container">
@@ -50,13 +62,18 @@
                 <h3>Select Specification (× 10 vials):</h3>
                 <div class="spec-grid" id="spec-container"></div>
             </div>
-            <a href="#" class="buy-btn" id="inquiry-btn" target="_blank"><i class="fab fa-whatsapp" style="font-size: 22px;"></i> Inquiry Now</a>
+
+            <button class="buy-btn" id="add-to-cart-btn">
+                <i class="fas fa-shopping-cart" style="font-size: 22px;"></i> Add to Cart
+            </button>
         </div>
     </div>
-    <footer>Copyright © 2026 Peptides Factory. All Rights Reserved.</footer>
+
+    <footer>
+        <div style="text-align: center;">Copyright © 2026 Peptides Factory. All Rights Reserved.</div>
+    </footer>
 
     <script>
-        // 阶梯价格完美匹配你的最低77与最高371
         const productData = {
             name: "Retatrutide",
             variants: [
@@ -69,14 +86,13 @@
 
         const container = document.getElementById('spec-container');
         const priceDisplay = document.getElementById('price');
-        const inquiryBtn = document.getElementById('inquiry-btn');
-        const phone = "85252638529";
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+        let currentSelection = productData.variants[0];
 
         function selectSpec(index) {
             document.querySelectorAll('.spec-btn').forEach((btn, i) => btn.classList.toggle('active', i === index));
-            const selected = productData.variants[index];
-            priceDisplay.textContent = `$${selected.price.toFixed(2)}`;
-            inquiryBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(`Hi, I would like to inquire about ${productData.name} (${selected.spec} × 10vials) priced at $${selected.price}.`)}`;
+            currentSelection = productData.variants[index];
+            priceDisplay.textContent = `$${currentSelection.price.toFixed(2)}`;
         }
 
         productData.variants.forEach((v, index) => {
@@ -85,6 +101,40 @@
             btn.onclick = () => selectSpec(index); container.appendChild(btn);
         });
         selectSpec(0);
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
+            document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+        updateCartCount();
+
+        addToCartBtn.addEventListener('click', () => {
+            let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
+            let existingItem = cart.find(item => item.name === productData.name && item.spec === currentSelection.spec);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: productData.name,
+                    spec: currentSelection.spec,
+                    price: currentSelection.price,
+                    quantity: 1,
+                    image: "Retatrutide.png"
+                });
+            }
+
+            localStorage.setItem('peptides_cart', JSON.stringify(cart));
+            updateCartCount();
+
+            const originalHTML = addToCartBtn.innerHTML;
+            addToCartBtn.innerHTML = '<i class="fas fa-check" style="font-size: 22px;"></i> Added to Cart!';
+            addToCartBtn.style.backgroundColor = '#25D366';
+            setTimeout(() => {
+                addToCartBtn.innerHTML = originalHTML;
+                addToCartBtn.style.backgroundColor = '';
+            }, 1500);
+        });
     </script>
 </body>
 </html>
