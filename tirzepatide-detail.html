@@ -2,17 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tirzepatide Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tirzepatide Detail | Peptides Factory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 100px; }
-        .back-btn { padding: 10px 20px; background: #0a2540; color: white; text-decoration: none; border-radius: 5px; }
+        /* 复用全局样式 */
+        :root { --primary-color: #0a2540; --accent-color: #00d4b2; --text-dark: #333; --bg-light: #f8f9fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
+        .logo-img { height: 90px; width: auto; object-fit: contain; }
+        nav a { margin: 0 15px; text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--accent-color); }
+        footer { background-color: #0d1117; color: #9ca3af; padding: 60px 5% 30px; font-size: 14px; margin-top: 60px; }
+
+        /* 详情页专属样式 */
+        .detail-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; display: flex; gap: 50px; flex-wrap: wrap; }
+        .product-image { flex: 1; min-width: 300px; background: #f0f0f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 40px; }
+        .product-image img { width: 100%; max-width: 400px; object-fit: contain; }
+        .product-info { flex: 1; min-width: 300px; display: flex; flex-direction: column; }
+        .breadcrumb { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .breadcrumb a { color: var(--primary-color); text-decoration: none; }
+        .product-info h1 { font-size: 36px; color: var(--primary-color); margin: 0 0 15px; }
+        .price-display { font-size: 32px; font-weight: bold; color: var(--accent-color); margin-bottom: 20px; }
+        .stock-badge { display: inline-block; background: #e6f9f5; color: #00a88d; padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 20px; }
+        .description { line-height: 1.6; color: #555; margin-bottom: 30px; font-size: 16px; }
+        
+        .spec-section h3 { margin-bottom: 15px; font-size: 16px; color: var(--primary-color); }
+        .spec-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .spec-btn { padding: 10px 15px; border: 2px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; transition: 0.3s; color: var(--text-dark); }
+        .spec-btn:hover { border-color: var(--primary-color); }
+        .spec-btn.active { border-color: var(--primary-color); background: var(--primary-color); color: white; }
+
+        .buy-btn { background-color: var(--accent-color); color: #fff; padding: 18px 30px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; transition: 0.3s; display: inline-flex; justify-content: center; align-items: center; gap: 10px; }
+        .buy-btn:hover { background-color: #00b598; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,212,178,0.2); }
     </style>
 </head>
 <body>
-    <h1>Tirzepatide 商品详情页</h1>
-    <p>跳转成功！这里以后放产品的详细介绍、纯度报告和规格。</p>
-    <br><br>
-    <a href="index.html" class="back-btn">返回首页</a> 
-    <!-- 注意：这里的 index.html 需要改成你首页的实际文件名 -->
+
+    <header>
+        <a href="index.html" class="logo-container"><img src="logo.png" alt="Logo" class="logo-img"></a>
+        <nav><a href="index.html">Home</a><a href="index.html#shop">Shop</a></nav>
+    </header>
+
+    <div class="detail-container">
+        <div class="product-image">
+            <img src="Tirzepatide.png" alt="Tirzepatide">
+        </div>
+        <div class="product-info">
+            <div class="breadcrumb"><a href="index.html">Home</a> > <a href="index.html#shop">Products</a> > Tirzepatide</div>
+            <h1>Tirzepatide</h1>
+            <div class="stock-badge"><i class="fas fa-check-circle"></i> In Stock | HPLC Verified</div>
+            <div class="price-display" id="price">$43.00</div>
+            <p class="description">Premium grade Tirzepatide research peptide. Manufactured under strict laboratory conditions to ensure 99%+ purity. Provided in lyophilized powder form. For research and development purposes only.</p>
+            
+            <div class="spec-section">
+                <h3>Select Specification (× 10 vials):</h3>
+                <div class="spec-grid" id="spec-container">
+                    </div>
+            </div>
+
+            <a href="https://wa.me/85252638529" class="buy-btn" id="inquiry-btn" target="_blank">
+                <i class="fab fa-whatsapp" style="font-size: 22px;"></i> Inquiry Now
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div style="text-align: center;">Copyright © 2026 Peptides Factory. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        // 规格与价格数据 (Tirzepatide)
+        const productData = {
+            name: "Tirzepatide",
+            variants: [
+                { spec: "5mg", price: 43.00 }, { spec: "10mg", price: 65.00 },
+                { spec: "15mg", price: 88.00 }, { spec: "20mg", price: 115.00 },
+                { spec: "30mg", price: 145.00 }, { spec: "40mg", price: 168.00 },
+                { spec: "50mg", price: 192.00 }, { spec: "60mg", price: 215.00 },
+                { spec: "70mg", price: 238.00 }, { spec: "80mg", price: 265.00 },
+                { spec: "90mg", price: 288.00 }, { spec: "100mg", price: 310.00 },
+                { spec: "120mg", price: 329.00 }
+            ]
+        };
+
+        const container = document.getElementById('spec-container');
+        const priceDisplay = document.getElementById('price');
+        const inquiryBtn = document.getElementById('inquiry-btn');
+        const phone = "85252638529";
+
+        function selectSpec(index) {
+            // 更新按钮状态
+            document.querySelectorAll('.spec-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+            // 更新价格
+            const selected = productData.variants[index];
+            priceDisplay.textContent = `$${selected.price.toFixed(2)}`;
+            // 动态生成 WhatsApp 链接信息
+            const msg = `Hi, I would like to inquire about ${productData.name} (${selected.spec} × 10vials) priced at $${selected.price}.`;
+            inquiryBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+        }
+
+        // 初始化渲染按钮
+        productData.variants.forEach((v, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'spec-btn';
+            btn.textContent = v.spec;
+            btn.onclick = () => selectSpec(index);
+            container.appendChild(btn);
+        });
+
+        // 默认选中第一个
+        selectSpec(0);
+    </script>
 </body>
 </html>
