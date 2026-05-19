@@ -6,7 +6,7 @@
     <title>Tirzepatide Detail | Peptides Factory</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 复用全局样式 */
+        /* 原有全局样式保持完全不变 */
         :root { --primary-color: #0a2540; --accent-color: #00d4b2; --text-dark: #333; --bg-light: #f8f9fa; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
@@ -15,7 +15,7 @@
         nav a:hover { color: var(--accent-color); }
         footer { background-color: #0d1117; color: #9ca3af; padding: 60px 5% 30px; font-size: 14px; margin-top: 60px; }
 
-        /* 详情页专属样式 */
+        /* 原有详情页样式保持完全不变 */
         .detail-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; display: flex; gap: 50px; flex-wrap: wrap; }
         .product-image { flex: 1; min-width: 300px; background: #f0f0f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 40px; }
         .product-image img { width: 100%; max-width: 400px; object-fit: contain; }
@@ -33,15 +33,25 @@
         .spec-btn:hover { border-color: var(--primary-color); }
         .spec-btn.active { border-color: var(--primary-color); background: var(--primary-color); color: white; }
 
+        /* 购买按钮样式依然复用原来的 */
         .buy-btn { background-color: var(--accent-color); color: #fff; padding: 18px 30px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; transition: 0.3s; display: inline-flex; justify-content: center; align-items: center; gap: 10px; }
         .buy-btn:hover { background-color: #00b598; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,212,178,0.2); }
+        
+        /* 导航栏购物车角标样式 */
+        .cart-count { background: var(--accent-color); color: white; padding: 2px 6px; border-radius: 10px; font-size: 12px; font-weight: bold; margin-left: 5px; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo-container"><img src="logo.png" alt="Logo" class="logo-img"></a>
-        <nav><a href="index.html">Home</a><a href="index.html#shop">Shop</a></nav>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="cart.html" id="nav-cart">
+                <i class="fas fa-shopping-cart"></i> Cart <span class="cart-count" id="cart-count">0</span>
+            </a>
+        </nav>
     </header>
 
     <div class="detail-container">
@@ -61,9 +71,9 @@
                     </div>
             </div>
 
-            <a href="https://wa.me/85252638529" class="buy-btn" id="inquiry-btn" target="_blank">
-                <i class="fab fa-whatsapp" style="font-size: 22px;"></i> Inquiry Now
-            </a>
+            <button class="buy-btn" id="add-to-cart-btn">
+                <i class="fas fa-shopping-cart" style="font-size: 22px;"></i> Add to Cart
+            </button>
         </div>
     </div>
 
@@ -88,23 +98,19 @@
 
         const container = document.getElementById('spec-container');
         const priceDisplay = document.getElementById('price');
-        const inquiryBtn = document.getElementById('inquiry-btn');
-        const phone = "85252638529";
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+        let currentSelection = productData.variants[0]; // 记录当前选中的规格
 
+        // 1. 规格选择逻辑
         function selectSpec(index) {
-            // 更新按钮状态
             document.querySelectorAll('.spec-btn').forEach((btn, i) => {
                 btn.classList.toggle('active', i === index);
             });
-            // 更新价格
-            const selected = productData.variants[index];
-            priceDisplay.textContent = `$${selected.price.toFixed(2)}`;
-            // 动态生成 WhatsApp 链接信息
-            const msg = `Hi, I would like to inquire about ${productData.name} (${selected.spec} × 10vials) priced at $${selected.price}.`;
-            inquiryBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+            currentSelection = productData.variants[index];
+            priceDisplay.textContent = `$${currentSelection.price.toFixed(2)}`;
         }
 
-        // 初始化渲染按钮
+        // 初始化渲染规格按钮
         productData.variants.forEach((v, index) => {
             const btn = document.createElement('button');
             btn.className = 'spec-btn';
@@ -115,6 +121,57 @@
 
         // 默认选中第一个
         selectSpec(0);
+
+        // ================= 新增：购物车逻辑 =================
+
+        // 更新导航栏的购物车数量
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+        
+        // 页面加载时更新一次购物车数字
+        updateCartCount();
+
+        // 2. 加入购物车点击事件
+        addToCartBtn.addEventListener('click', () => {
+            // 获取当前购物车数据（如果为空则创建新数组）
+            let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
+            
+            // 检查购物车里是否已经有这款同规格的产品
+            let existingItem = cart.find(item => item.name === productData.name && item.spec === currentSelection.spec);
+            
+            if (existingItem) {
+                existingItem.quantity += 1; // 如果有，数量 +1
+            } else {
+                // 如果没有，新增商品记录
+                cart.push({
+                    name: productData.name,
+                    spec: currentSelection.spec,
+                    price: currentSelection.price,
+                    quantity: 1,
+                    image: "Tirzepatide.png"
+                });
+            }
+
+            // 保存回浏览器的本地存储
+            localStorage.setItem('peptides_cart', JSON.stringify(cart));
+            
+            // 更新右上角数字
+            updateCartCount();
+
+            // 给出视觉反馈：按钮变绿，文字变成“Added!”
+            const originalHTML = addToCartBtn.innerHTML;
+            addToCartBtn.innerHTML = '<i class="fas fa-check" style="font-size: 22px;"></i> Added to Cart!';
+            addToCartBtn.style.backgroundColor = '#25D366'; // 变成成功绿色
+            
+            // 1.5秒后恢复原状
+            setTimeout(() => {
+                addToCartBtn.innerHTML = originalHTML;
+                addToCartBtn.style.backgroundColor = '';
+            }, 1500);
+        });
     </script>
 </body>
 </html>
