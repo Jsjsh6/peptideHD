@@ -258,9 +258,9 @@
                     <div class="product-title">Tirzepatide</div>
                     <div class="product-price">$43.00 – $329.00</div>
                 </a>
-                <button class="inquiry-btn add-to-cart-idx" data-name="Tirzepatide" data-spec="5mg" data-price="43.00" data-img="Tirzepatide.png">
-                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                </button>
+                <a href="tirzepatide-detail.html" class="inquiry-btn">
+                    <i class="fas fa-list"></i> Select Options
+                </a>
             </div>
 
             <div class="product-card">
@@ -269,9 +269,9 @@
                     <div class="product-title">Semaglutide</div>
                     <div class="product-price">$40.00 – $109.00</div>
                 </a>
-                <button class="inquiry-btn add-to-cart-idx" data-name="Semaglutide" data-spec="5mg" data-price="40.00" data-img="Semaglutide.png">
-                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                </button>
+                <a href="semaglutide-detail.html" class="inquiry-btn">
+                    <i class="fas fa-list"></i> Select Options
+                </a>
             </div>
 
             <div class="product-card">
@@ -280,9 +280,9 @@
                     <div class="product-title">Retatrutide</div>
                     <div class="product-price">$77.00 – $371.00</div>
                 </a>
-                <button class="inquiry-btn add-to-cart-idx" data-name="Retatrutide" data-spec="5mg" data-price="77.00" data-img="Retatrutide.png">
-                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                </button>
+                <a href="retatrutide-detail.html" class="inquiry-btn">
+                    <i class="fas fa-list"></i> Select Options
+                </a>
             </div>
 
             <div class="product-card">
@@ -291,9 +291,9 @@
                     <div class="product-title">Oxytocin Acetate</div>
                     <div class="product-price">$29.00 – $51.00</div>
                 </a>
-                <button class="inquiry-btn add-to-cart-idx" data-name="Oxytocin Acetate" data-spec="2mg" data-price="29.00" data-img="Oxytocin Acetate.png">
-                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                </button>
+                <a href="oxytocin-detail.html" class="inquiry-btn">
+                    <i class="fas fa-list"></i> Select Options
+                </a>
             </div>
 
         </div>
@@ -363,51 +363,8 @@
             }
         }
         
-        // Execute once on page load
+        // Execute once on page load to display correct number from localStorage
         updateCartCount();
-
-        // 2. Bind click event to all Add to Cart buttons on the home page
-        document.querySelectorAll('.add-to-cart-idx').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Get product data bound to the button
-                let name = this.getAttribute('data-name');
-                let spec = this.getAttribute('data-spec');
-                let price = parseFloat(this.getAttribute('data-price'));
-                let img = this.getAttribute('data-img');
-                
-                // Read local cart data
-                let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
-                
-                // Check if product with same name and spec already exists
-                let existingItem = cart.find(item => item.name === name && item.spec === spec);
-                
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({
-                        name: name,
-                        spec: spec,
-                        price: price,
-                        quantity: 1,
-                        image: img
-                    });
-                }
-                
-                // Save and update count
-                localStorage.setItem('peptides_cart', JSON.stringify(cart));
-                updateCartCount();
-                
-                // Button visual feedback (turn green and show success)
-                const originalHTML = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-check"></i> Added!';
-                this.style.backgroundColor = '#25D366'; // Success green
-                
-                setTimeout(() => {
-                    this.innerHTML = originalHTML;
-                    this.style.backgroundColor = ''; // Restore original color
-                }, 1500);
-            });
-        });
     </script>
 </body>
 </html>
