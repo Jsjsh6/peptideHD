@@ -87,6 +87,17 @@
             transition: 0.3s;
         }
         nav a:hover { color: var(--accent-color); }
+        
+        /* 新增：购物车角标样式 */
+        .cart-count { 
+            background: var(--accent-color); 
+            color: white; 
+            padding: 2px 6px; 
+            border-radius: 10px; 
+            font-size: 12px; 
+            font-weight: bold; 
+            margin-left: 5px; 
+        }
 
         /* 3. Hero Section */
         .hero-section {
@@ -114,17 +125,16 @@
             transition: 0.4s;
             background: #fff;
             display: flex;
-            flex-direction: column; /* 确保内容和按钮排版整齐 */
+            flex-direction: column; 
         }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         
-        /* 新增：商品点击跳转区域样式 */
         .product-link {
             text-decoration: none;
             color: inherit;
             display: block;
             cursor: pointer;
-            margin-bottom: 20px; /* 给按钮留出空间 */
+            margin-bottom: 20px; 
         }
         
         .product-img { 
@@ -132,7 +142,6 @@
             border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow: hidden;
         }
         
-        /* 修改：增加图片悬浮微放大的动画效果 */
         .product-img img { 
             width: 100%; height: 100%; object-fit: contain; 
             transition: transform 0.4s ease;
@@ -142,6 +151,7 @@
         .product-title { font-size: 20px; margin: 15px 0 10px; font-weight: bold; color: var(--primary-color); }
         .product-price { color: #555; font-weight: 600; font-size: 18px; margin: 0; }
         
+        /* 兼容 button 标签的样式，确保外观与原本的 a 标签完全一致 */
         .inquiry-btn {
             background-color: var(--primary-color);
             color: white;
@@ -151,9 +161,13 @@
             cursor: pointer;
             text-decoration: none;
             display: block;
+            width: 100%; /* 确保按钮撑满 */
+            font-size: 16px;
+            font-family: inherit;
             font-weight: bold;
             transition: 0.3s;
-            margin-top: auto; /* 确保按钮永远在卡片最底部 */
+            margin-top: auto; 
+            box-sizing: border-box;
         }
         .inquiry-btn:hover { background-color: var(--accent-color); color: var(--primary-color); }
 
@@ -221,6 +235,9 @@
             <a href="#lab">Lab Reports</a>
             <a href="#about">About Us</a>
             <a href="#contact">Contact</a>
+            <a href="cart.html" id="nav-cart">
+                <i class="fas fa-shopping-cart"></i> Cart <span class="cart-count" id="cart-count">0</span>
+            </a>
         </nav>
     </header>
     
@@ -229,49 +246,52 @@
         <p>Laboratory-Grade Purity | Factory Direct Prices | Stealth Worldwide Shipping</p>
     </section>
 
-    <!-- 修改：为了更好的语义化，将 div 改为了 section -->
     <section class="container" id="shop">
         <h2 class="section-title">Featured Research Peptides</h2>
         <div class="product-grid">
             
-            <!-- 商品 1 -->
             <div class="product-card">
                 <a href="tirzepatide-detail.html" class="product-link">
                     <div class="product-img"><img src="Tirzepatide.png" alt="Tirzepatide"></div>
                     <div class="product-title">Tirzepatide</div>
                     <div class="product-price">$43.00 – $329.00</div>
                 </a>
-                <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
+                <button class="inquiry-btn add-to-cart-idx" data-name="Tirzepatide" data-spec="5mg" data-price="43.00" data-img="Tirzepatide.png">
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
             </div>
 
-            <!-- 商品 2 -->
             <div class="product-card">
                 <a href="semaglutide-detail.html" class="product-link">
                     <div class="product-img"><img src="Semaglutide.png" alt="Semaglutide" ></div>
                     <div class="product-title">Semaglutide</div>
                     <div class="product-price">$40.00 – $109.00</div>
                 </a>
-                <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
+                <button class="inquiry-btn add-to-cart-idx" data-name="Semaglutide" data-spec="5mg" data-price="40.00" data-img="Semaglutide.png">
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
             </div>
 
-            <!-- 商品 3 -->
             <div class="product-card">
                 <a href="retatrutide-detail.html" class="product-link">
                     <div class="product-img"><img src="Retatrutide.png" alt="Retatrutide"></div>
                     <div class="product-title">Retatrutide</div>
                     <div class="product-price">$77.00 – $371.00</div>
                 </a>
-                <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
+                <button class="inquiry-btn add-to-cart-idx" data-name="Retatrutide" data-spec="5mg" data-price="77.00" data-img="Retatrutide.png">
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
             </div>
 
-            <!-- 商品 4 -->
             <div class="product-card">
                 <a href="oxytocin-detail.html" class="product-link">
                     <div class="product-img"><img src="Oxytocin Acetate.png" alt="Oxytocin Acetate" ></div>
                     <div class="product-title">Oxytocin Acetate</div>
                     <div class="product-price">$29.00 – $51.00</div>
                 </a>
-                <a href="https://wa.me/85252638529" class="inquiry-btn">Inquiry Now</a>
+                <button class="inquiry-btn add-to-cart-idx" data-name="Oxytocin Acetate" data-spec="2mg" data-price="29.00" data-img="Oxytocin Acetate.png">
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
             </div>
 
         </div>
@@ -326,10 +346,67 @@
         </div>
     </footer>
 
-    <!-- 增加了 aria-label 以提升无障碍访问标准 -->
     <a href="https://wa.me/85252638529" class="float-btn" target="_blank" aria-label="Contact us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <script>
+        // 1. 更新导航栏购物车数字的函数
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let countElement = document.getElementById('cart-count');
+            if (countElement) {
+                countElement.textContent = totalItems;
+            }
+        }
+        
+        // 页面加载时执行一次
+        updateCartCount();
+
+        // 2. 为所有首页的 Add to Cart 按钮绑定点击事件
+        document.querySelectorAll('.add-to-cart-idx').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // 获取按钮上绑定的商品数据
+                let name = this.getAttribute('data-name');
+                let spec = this.getAttribute('data-spec');
+                let price = parseFloat(this.getAttribute('data-price'));
+                let img = this.getAttribute('data-img');
+                
+                // 读取本地购物车数据
+                let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
+                
+                // 检查是否已有同名同规格的商品
+                let existingItem = cart.find(item => item.name === name && item.spec === spec);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        name: name,
+                        spec: spec,
+                        price: price,
+                        quantity: 1,
+                        image: img
+                    });
+                }
+                
+                // 保存并更新数字
+                localStorage.setItem('peptides_cart', JSON.stringify(cart));
+                updateCartCount();
+                
+                // 按钮视觉反馈（变成绿色并提示成功）
+                const originalHTML = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Added!';
+                this.style.backgroundColor = '#25D366'; // 成功绿
+                
+                setTimeout(() => {
+                    this.innerHTML = originalHTML;
+                    this.style.backgroundColor = ''; // 恢复原色
+                }, 1500);
+            });
+        });
+    </script>
 </body>
 </html>
+ 
