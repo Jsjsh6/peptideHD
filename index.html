@@ -88,7 +88,7 @@
         }
         nav a:hover { color: var(--accent-color); }
         
-        /* 新增：购物车角标样式 */
+        /* Cart Badge Styling */
         .cart-count { 
             background: var(--accent-color); 
             color: white; 
@@ -125,10 +125,11 @@
             transition: 0.4s;
             background: #fff;
             display: flex;
-            flex-direction: column; 
+            flex-direction: column; /* Keep content and button aligned */
         }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         
+        /* Product Link Area Styling */
         .product-link {
             text-decoration: none;
             color: inherit;
@@ -142,6 +143,7 @@
             border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow: hidden;
         }
         
+        /* Hover Zoom Effect for Product Image */
         .product-img img { 
             width: 100%; height: 100%; object-fit: contain; 
             transition: transform 0.4s ease;
@@ -151,7 +153,7 @@
         .product-title { font-size: 20px; margin: 15px 0 10px; font-weight: bold; color: var(--primary-color); }
         .product-price { color: #555; font-weight: 600; font-size: 18px; margin: 0; }
         
-        /* 兼容 button 标签的样式，确保外观与原本的 a 标签完全一致 */
+        /* Button styling compatibility to match the original anchor tag */
         .inquiry-btn {
             background-color: var(--primary-color);
             color: white;
@@ -161,12 +163,12 @@
             cursor: pointer;
             text-decoration: none;
             display: block;
-            width: 100%; /* 确保按钮撑满 */
+            width: 100%; /* Ensure full width */
             font-size: 16px;
             font-family: inherit;
             font-weight: bold;
             transition: 0.3s;
-            margin-top: auto; 
+            margin-top: auto; /* Ensure button stays at the bottom of the card */
             box-sizing: border-box;
         }
         .inquiry-btn:hover { background-color: var(--accent-color); color: var(--primary-color); }
@@ -351,7 +353,7 @@
     </a>
 
     <script>
-        // 1. 更新导航栏购物车数字的函数
+        // 1. Function to update cart count in navbar
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
             let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -361,22 +363,22 @@
             }
         }
         
-        // 页面加载时执行一次
+        // Execute once on page load
         updateCartCount();
 
-        // 2. 为所有首页的 Add to Cart 按钮绑定点击事件
+        // 2. Bind click event to all Add to Cart buttons on the home page
         document.querySelectorAll('.add-to-cart-idx').forEach(button => {
             button.addEventListener('click', function(e) {
-                // 获取按钮上绑定的商品数据
+                // Get product data bound to the button
                 let name = this.getAttribute('data-name');
                 let spec = this.getAttribute('data-spec');
                 let price = parseFloat(this.getAttribute('data-price'));
                 let img = this.getAttribute('data-img');
                 
-                // 读取本地购物车数据
+                // Read local cart data
                 let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
                 
-                // 检查是否已有同名同规格的商品
+                // Check if product with same name and spec already exists
                 let existingItem = cart.find(item => item.name === name && item.spec === spec);
                 
                 if (existingItem) {
@@ -391,22 +393,21 @@
                     });
                 }
                 
-                // 保存并更新数字
+                // Save and update count
                 localStorage.setItem('peptides_cart', JSON.stringify(cart));
                 updateCartCount();
                 
-                // 按钮视觉反馈（变成绿色并提示成功）
+                // Button visual feedback (turn green and show success)
                 const originalHTML = this.innerHTML;
                 this.innerHTML = '<i class="fas fa-check"></i> Added!';
-                this.style.backgroundColor = '#25D366'; // 成功绿
+                this.style.backgroundColor = '#25D366'; // Success green
                 
                 setTimeout(() => {
                     this.innerHTML = originalHTML;
-                    this.style.backgroundColor = ''; // 恢复原色
+                    this.style.backgroundColor = ''; // Restore original color
                 }, 1500);
             });
         });
     </script>
 </body>
 </html>
- 
