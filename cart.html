@@ -360,4 +360,19 @@
             }
             
             localStorage.setItem('peptides_cart', JSON.stringify(cart));
-            loadCart
+            loadCart();
+        }
+        
+        // Function to remove item completely from localStorage
+        function deleteItem(index) {
+            let cart = JSON.parse(localStorage.getItem('peptides_cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('peptides_cart', JSON.stringify(cart));
+            loadCart();
+        }
+        
+        // Run function automatically on load
+        loadCart();
+    </script>
+</body>
+</html>
