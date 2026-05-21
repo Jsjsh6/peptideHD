@@ -366,5 +366,34 @@
         // Execute once on page load to display correct number from localStorage
         updateCartCount();
     </script>
+    <!-- Telegram 悬浮按钮 -->
+<a href="https://t.me/PeptidesIris" target="_blank" class="tg-floating-button">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.82L14.86 17.18C14.73 17.77 14.38 17.91 13.89 17.63L11.18 15.63L9.87 16.89C9.72 17.04 9.6 17.16 9.3 17.16L9.5 14.35L14.61 9.73C14.83 9.53 14.56 9.42 14.27 9.61L7.95 13.59L5.22 12.74C4.63 12.55 4.62 12.14 5.35 11.86L16.03 7.74C16.52 7.56 16.95 7.86 16.64 8.82Z" fill="white"/>
+    </svg>
+</a>
+
+<style>
+.tg-floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #26A5E4; /* Telegram 蓝色 */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+
+.tg-floating-button:hover {
+    transform: scale(1.1); /* 鼠标悬停放大 */
+    background-color: #229ED9;
+}
+</style>
 </body>
 </html>
