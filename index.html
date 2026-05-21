@@ -366,45 +366,50 @@
         // Execute once on page load to display correct number from localStorage
         updateCartCount();
     </script>
-  <!-- 整合后的悬浮按钮组 -->
+<!-- 社交按钮组合容器 -->
+<div class="social-contact-wrapper">
+    <!-- Telegram 按钮 -->
+    <a href="https://t.me/PeptidesIris" class="social-btn tg-color" target="_blank">
+        <i class="fab fa-telegram-plane"></i>
+    </a>
+    <!-- WhatsApp 按钮 -->
+    <a href="https://wa.me/85252638529" class="social-btn wa-color" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
 <style>
-    /* WhatsApp 按钮原有样式保持不变，仅确认位置 */
-    .float-btn {
-        position: fixed; bottom: 30px; right: 30px;
-        width: 60px; height: 60px; border-radius: 50%;
-        background: #25D366; color: white; display: flex;
-        align-items: center; justify-content: center;
-        font-size: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        z-index: 9999; text-decoration: none;
-        transition: 0.3s;
-    }
+/* 强制清空可能存在的冲突 */
+.social-contact-wrapper {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    display: flex !important;
+    flex-direction: column !important; /* 强制垂直排列 */
+    gap: 15px !important; /* 图标之间的距离 */
+    z-index: 99999 !important;
+}
 
-    /* Telegram 按钮放在 WA 上方 */
-    .tg-floating-button {
-        position: fixed; 
-        bottom: 105px; /* WA 的 30px + 自身高度 60px + 间距 15px */
-        right: 30px;
-        width: 60px; height: 60px; border-radius: 50%;
-        background: #26A5E4; color: white; display: flex;
-        align-items: center; justify-content: center;
-        font-size: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        z-index: 9999; text-decoration: none;
-        transition: 0.3s;
-    }
+.social-btn {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 30px !important;
+    color: white !important;
+    text-decoration: none !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+    transition: transform 0.3s ease !important;
+}
 
-    .float-btn:hover, .tg-floating-button:hover {
-        transform: scale(1.1);
-    }
+.social-btn:hover {
+    transform: scale(1.1) !important;
+}
+
+.tg-color { background-color: #26A5E4 !important; }
+.wa-color { background-color: #25D366 !important; }
 </style>
-
-<!-- Telegram 按钮 -->
-<a href="https://t.me/PeptidesIris" class="tg-floating-button" target="_blank" aria-label="Contact us on Telegram">
-    <i class="fab fa-telegram-plane"></i>
-</a>
-
-<!-- WhatsApp 按钮 -->
-<a href="https://wa.me/85252638529" class="float-btn" target="_blank" aria-label="Contact us on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-</a>
 </body>
 </html>
